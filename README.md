@@ -1,36 +1,173 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI Trading Assistant
+
+An AI-powered cryptocurrency trading analysis platform with real-time market data, technical analysis, and intelligent predictions powered by Google Gemini Pro.
+
+## Features
+
+- 🤖 AI-powered trading analysis using Google Gemini Pro
+- 📊 Real-time technical indicators (RSI, SMA, EMA, MACD, Bollinger Bands)
+- 💬 Interactive chat interface for trading insights
+- 📈 Beautiful data visualizations with Recharts
+- 🔐 Secure authentication with NextAuth and Google OAuth
+- 💎 Credit-based system with subscription tiers via Polar.sh
+- ⚡ WebSocket support for real-time market updates
+- 🎨 Modern UI with Tailwind CSS
+
+## Tech Stack
+
+### Frontend
+- **Next.js 16** - React framework with App Router
+- **React 19** - UI library
+- **Wouter** - Lightweight routing
+- **Recharts** - Data visualization
+- **Lucide React** - Icon library
+- **Tailwind CSS** - Styling
+
+### Backend
+- **Prisma** - Type-safe ORM
+- **SQLite** - Database (development)
+- **NextAuth** - Authentication
+- **Google OAuth** - Social login
+
+### APIs & Services
+- **CryptoCompare** - Market data
+- **Google Gemini Pro** - AI analysis
+- **Polar.sh** - Subscription management
+- **WebSocket (ws)** - Real-time updates
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+ and npm
+- Google OAuth credentials
+- CryptoCompare API key
+- Google Gemini Pro API key
+- Polar.sh account (for monetization)
+
+### Installation
+
+1. Clone the repository and install dependencies:
+
+```bash
+npm install
+```
+
+2. Set up environment variables:
+
+Copy `.env.example` to `.env.local` and fill in your credentials:
+
+```bash
+cp .env.example .env.local
+```
+
+Required environment variables:
+- `DATABASE_URL` - Database connection string
+- `NEXTAUTH_URL` - Your app URL (http://localhost:3000 for dev)
+- `NEXTAUTH_SECRET` - Random secret for NextAuth
+- `GOOGLE_CLIENT_ID` - Google OAuth client ID
+- `GOOGLE_CLIENT_SECRET` - Google OAuth client secret
+- `CRYPTOCOMPARE_API_KEY` - CryptoCompare API key
+- `GOOGLE_GEMINI_API_KEY` - Google Gemini Pro API key
+- `POLAR_ACCESS_TOKEN` - Polar.sh access token
+- `POLAR_WEBHOOK_SECRET` - Polar.sh webhook secret
+- `POLAR_ORGANIZATION_ID` - Polar.sh organization ID
+
+3. Initialize the database:
+
+```bash
+npm run db:generate
+npm run db:push
+```
+
+4. Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to see the app.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Database Commands
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `npm run db:generate` - Generate Prisma client
+- `npm run db:push` - Push schema changes to database
+- `npm run db:migrate` - Create and run migrations
+- `npm run db:studio` - Open Prisma Studio
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+app/
+├── api/                    # API routes
+│   ├── auth/              # NextAuth authentication
+│   ├── analysis/          # Trading analysis endpoints
+│   ├── credits/           # User credits management
+│   └── subscription/      # Subscription handling
+├── components/            # React components
+│   ├── Terminal/          # Terminal-style interface
+│   ├── Chat/              # Chat interface
+│   ├── Sidebar/           # Navigation sidebar
+│   └── PredictionCard/    # Prediction display
+├── lib/                   # Utility libraries
+│   ├── technicalAnalysis/ # Technical analysis logic
+│   ├── indicators/        # Trading indicators (RSI, SMA, EMA)
+│   ├── signalAggregator/  # Signal aggregation
+│   └── websocket/         # WebSocket client
+└── types/                 # TypeScript type definitions
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+lib/
+├── prisma.ts             # Prisma client instance
+└── auth.ts               # NextAuth configuration
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+prisma/
+└── schema.prisma         # Database schema
+```
 
-## Deploy on Vercel
+## API Endpoints
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Authentication
+- `POST /api/auth/signin` - Sign in with Google
+- `POST /api/auth/signout` - Sign out
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Analysis
+- `POST /api/analysis` - Request new trading analysis
+- `GET /api/analysis` - Get analysis history
+
+### Credits
+- `GET /api/credits` - Get user credits and subscription status
+
+### Subscription
+- `GET /api/subscription` - Get subscription details
+- `POST /api/subscription` - Update subscription
+
+## Development
+
+### Type Checking
+```bash
+npx tsc --noEmit
+```
+
+### Linting
+```bash
+npm run lint
+```
+
+### Building
+```bash
+npm run build
+```
+
+## Deployment
+
+The app can be deployed to Vercel, Netlify, or any platform that supports Next.js.
+
+For production, consider upgrading from SQLite to PostgreSQL by updating the `DATABASE_URL` in your environment variables and changing the provider in `prisma/schema.prisma`.
+
+## License
+
+MIT
+
+## Support
+
+For issues and questions, please open an issue on GitHub.
