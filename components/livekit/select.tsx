@@ -12,8 +12,8 @@ function Select({
   value,
   onValueChange,
   children,
-  open,
-  onOpenChange,
+  open: _open,
+  onOpenChange: _onOpenChange,
   ...props
 }: React.ComponentProps<'div'> & {
   value?: string;
@@ -21,6 +21,9 @@ function Select({
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
 }) {
+  // Suppress unused variable warnings - these props exist for API compatibility
+  void _open;
+  void _onOpenChange;
   return (
     <SelectContext.Provider value={{ value, onValueChange }}>
       <div {...props} className={cn('relative inline-block w-full', props.className)}>
@@ -39,8 +42,10 @@ function SelectValue({ ...props }: React.ComponentProps<'span'>) {
   return <span {...props} style={{ display: 'none' }} />;
 }
 
-function SelectTrigger({ className, children, ...props }: React.ComponentProps<'button'>) {
+function SelectTrigger({ className, children, ..._props }: React.ComponentProps<'button'>) {
   // We hide the custom trigger because the native select in SelectContent provides the UI
+  // _props is unused but destructured for API compatibility
+  void _props;
   return (
     <div className={cn('hidden', className)} aria-hidden="true">
       {children}
@@ -51,9 +56,11 @@ function SelectTrigger({ className, children, ...props }: React.ComponentProps<'
 function SelectContent({
   className,
   children,
-  position,
+  position: _position,
   ...props
 }: React.ComponentProps<'select'> & { position?: string }) {
+  // Suppress unused variable warning - position exists for API compatibility
+  void _position;
   const { value, onValueChange } = React.useContext(SelectContext);
   return (
     <select
@@ -88,10 +95,12 @@ function SelectSeparator({ className, ...props }: React.ComponentProps<'hr'>) {
   return <hr className={cn('bg-muted -mx-1 my-1 h-px', className)} {...props} />;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function SelectScrollUpButton(_props: React.ComponentProps<'div'>) {
   return null;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function SelectScrollDownButton(_props: React.ComponentProps<'div'>) {
   return null;
 }

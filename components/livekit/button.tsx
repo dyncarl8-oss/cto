@@ -48,13 +48,14 @@ function Button({
   className,
   variant,
   size,
-  asChild = false,
+  asChild: _asChild = false,
   ...props
 }: React.ComponentProps<'button'> &
   VariantProps<typeof buttonVariants> & {
     asChild?: boolean;
   }) {
-  // Ignored asChild prop as Radix Slot is removed
+  // Suppress unused variable warning - asChild exists for API compatibility with Radix
+  void _asChild;
   const Comp = 'button';
 
   return (
