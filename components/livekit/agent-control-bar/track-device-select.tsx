@@ -15,7 +15,7 @@ import { cn } from '@/lib/utils';
 
 type DeviceSelectProps = React.ComponentProps<typeof SelectTrigger> & {
   kind: MediaDeviceKind;
-  variant?: 'default' | 'small';
+  size?: 'default' | 'sm';
   track?: LocalAudioTrack | LocalVideoTrack | undefined;
   requestPermissions?: boolean;
   onMediaDeviceError?: (error: Error) => void;
