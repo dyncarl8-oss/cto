@@ -1,6 +1,6 @@
 'use client';
 
-import { AnimatePresence, type HTMLMotionProps, motion, type Variants } from 'motion/react';
+import { AnimatePresence, type HTMLMotionProps, type Variants, motion } from 'motion/react';
 import { type ReceivedMessage } from '@livekit/components-react';
 import { ChatEntry } from '@/components/livekit/chat-entry';
 
