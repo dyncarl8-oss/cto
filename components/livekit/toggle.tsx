@@ -48,10 +48,11 @@ function Toggle({
   pressed,
   onPressedChange,
   ...props
-}: React.ComponentProps<'button'> & VariantProps<typeof toggleVariants> & {
-  pressed?: boolean;
-  onPressedChange?: (pressed: boolean) => void;
-}) {
+}: React.ComponentProps<'button'> &
+  VariantProps<typeof toggleVariants> & {
+    pressed?: boolean;
+    onPressedChange?: (pressed: boolean) => void;
+  }) {
   return (
     <button
       type="button"

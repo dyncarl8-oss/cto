@@ -92,14 +92,14 @@ function SelectItem({
 }
 
 function SelectSeparator({ className, ...props }: React.ComponentProps<'hr'>) {
-  return <hr className={cn("-mx-1 my-1 h-px bg-muted", className)} {...props} />;
+  return <hr className={cn("bg-muted -mx-1 my-1 h-px", className)} {...props} />;
 }
 
-function SelectScrollUpButton({ className, ...props }: React.ComponentProps<'div'>) {
+function SelectScrollUpButton(_props: React.ComponentProps<'div'>) {
   return null;
 }
 
-function SelectScrollDownButton({ className, ...props }: React.ComponentProps<'div'>) {
+function SelectScrollDownButton(_props: React.ComponentProps<'div'>) {
   return null;
 }
 
