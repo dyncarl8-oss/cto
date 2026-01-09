@@ -23,7 +23,7 @@ function Select({
 }) {
   return (
     <SelectContext.Provider value={{ value, onValueChange }}>
-      <div {...props} className={cn("relative inline-block w-full", props.className)}>
+      <div {...props} className={cn('relative inline-block w-full', props.className)}>
         {children}
       </div>
     </SelectContext.Provider>
@@ -42,7 +42,7 @@ function SelectValue({ ...props }: React.ComponentProps<'span'>) {
 function SelectTrigger({ className, children, ...props }: React.ComponentProps<'button'>) {
   // We hide the custom trigger because the native select in SelectContent provides the UI
   return (
-    <div className={cn("hidden", className)} aria-hidden="true">
+    <div className={cn('hidden', className)} aria-hidden="true">
       {children}
     </div>
   );
@@ -60,9 +60,9 @@ function SelectContent({
       value={value}
       onChange={(e) => onValueChange?.(e.target.value)}
       className={cn(
-        "flex h-9 w-full items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50",
+        'border-input ring-offset-background placeholder:text-muted-foreground focus:ring-ring flex h-9 w-full items-center justify-between rounded-md border bg-transparent px-3 py-2 text-sm whitespace-nowrap shadow-sm focus:ring-1 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50',
         // Add basic dark mode support if needed (bg-background/bg-muted)
-        "bg-muted text-foreground",
+        'bg-muted text-foreground',
         className
       )}
       {...props}
@@ -73,26 +73,19 @@ function SelectContent({
 }
 
 function SelectLabel({ className, ...props }: React.ComponentProps<'div'>) {
-  return <div className={cn("px-2 py-1.5 text-sm font-semibold", className)} {...props} />;
+  return <div className={cn('px-2 py-1.5 text-sm font-semibold', className)} {...props} />;
 }
 
-function SelectItem({
-  className,
-  children,
-  ...props
-}: React.ComponentProps<'option'>) {
+function SelectItem({ className, children, ...props }: React.ComponentProps<'option'>) {
   return (
-    <option
-      className={cn(className)}
-      {...props}
-    >
+    <option className={cn(className)} {...props}>
       {children}
     </option>
   );
 }
 
 function SelectSeparator({ className, ...props }: React.ComponentProps<'hr'>) {
-  return <hr className={cn("bg-muted -mx-1 my-1 h-px", className)} {...props} />;
+  return <hr className={cn('bg-muted -mx-1 my-1 h-px', className)} {...props} />;
 }
 
 function SelectScrollUpButton(_props: React.ComponentProps<'div'>) {
