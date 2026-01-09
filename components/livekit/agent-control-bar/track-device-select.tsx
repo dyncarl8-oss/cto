@@ -91,7 +91,9 @@ export function TrackDeviceSelect({
     >
       <SelectTrigger className={cn(selectVariants({ size }), props.className)}>
         {size !== 'sm' && (
-          <SelectValue className="font-mono text-sm" placeholder={`Select a ${kind}`} />
+          <SelectValue className="font-mono text-sm">
+            {`Select a ${kind}`}
+          </SelectValue>
         )}
       </SelectTrigger>
       <SelectContent>
